@@ -15,15 +15,7 @@ object Direction:
       case "up" => Direction.Up
 
 
-case class Position private(horizontal: Int, depth: Int):
-
-  def increaseHorizontal(by: Int): Position = this.copy(horizontal = this.horizontal + by)
-
-  def increaseDepth(by: Int): Position = this.copy(depth = this.depth + by)
-
-  def decreaseDepthBy(by: Int): Position = this.copy(depth = this.depth - by)
-
-end Position
+case class Position private[domain](horizontal: Int, depth: Int, aim: Int)
 
 object Position:
-  def empty: Position = new Position(0, 0)
+  def empty: Position = new Position(0, 0, 0)
