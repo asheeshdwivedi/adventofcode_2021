@@ -7,9 +7,10 @@ enum Bit(val value: Int):
   def invert: Bit =
     this match
       case Zero => One
-      case One => Zero
+      case One  => Zero
 
   case Zero extends Bit(0)
   case One extends Bit(1)
 
-
+enum LifeSupportRatingType:
+  case Oxygen, Carbon
