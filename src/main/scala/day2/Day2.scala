@@ -1,7 +1,7 @@
 package day2
 
 import day2.domain.{Command, Position}
-import day2.domain.Command.{Forward , Up, Down}
+import day2.domain.Command.{Forward, Up, Down}
 import day2.domain.PositionCalculator.*
 
 object Day2:
