@@ -1,19 +1,9 @@
 package day2.domain
 
-
-case class Instruction(direction: Direction, steps: Int)
-
-enum Direction:
-  case Forward, Down, Up
-
-object Direction:
-
-  def fromString(input: String): Direction =
-    input match
-      case "forward" => Direction.Forward
-      case "down" => Direction.Down
-      case "up" => Direction.Up
-
+enum Command:
+  case Forward(steps: Int)
+  case Down(steps: Int)
+  case Up(steps: Int)
 
 case class Position private[domain](horizontal: Int, depth: Int, aim: Int)
 
