@@ -21,8 +21,9 @@ object TypeParser:
     override def parse(input: String): Seq[Out] =
       Source.fromResource(input).getLines().map(_.as[Out]).toSeq
 
-  given listParser[Out] (using TypeParser[String, Out]): TypeParser[Seq[String], Seq[Out]] with
-    override def parse(input: Seq[String]): Seq[Out] =
-      input.map(_.as[Out])
+  given TypeParser[String, Seq[String]] with
+    override def parse(input: String): Seq[String] =
+      Source.fromResource(input).getLines().toSeq
 
-
+  given TypeParser[String, Int] with
+    override def parse(input: String): Int = input.toInt

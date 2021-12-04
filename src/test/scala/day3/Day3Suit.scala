@@ -4,7 +4,6 @@ import day3.Day3
 import day3.domain.Binary
 import org.scalatest.funsuite.AnyFunSuite;
 import parser.TypeParser._
-import parser.TypeParser.listParser
 import day3.domain.Binary.toBinary
 
 class Day3Suit extends AnyFunSuite :
