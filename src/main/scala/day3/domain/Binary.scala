@@ -2,7 +2,11 @@ package day3.domain
 
 import day3.domain.{Binary, Bit}
 import Binary.toBinary
-import day3.domain.Bit.Zero
+import day2.domain.Command
+import day3.domain.Bit
+import parser.TypeParser
+import parser.TypeParser._
+
 
 import scala.annotation.tailrec
 
@@ -16,7 +20,7 @@ class Binary(bits: Seq[Bit]):
 
   def intValue: Int = bits.view.reverse
     .zipWithIndex
-    .filter((bits ,_)  => bits == Bit.One)
+    .filter((bits, _) => bits == Bit.One)
     .map((_, index) => Math.pow(2, index).toInt).sum
 
   def length: Int = bits.length
@@ -24,6 +28,10 @@ class Binary(bits: Seq[Bit]):
   override def toString: String = bits.map(_.value).mkString
 
 object Binary:
+
+  given TypeParser[String, Binary] with
+    def parse(input: String): Binary = Binary(input.map(_.as[Bit]))
+
   extension (input: Int)
     def toBinary = {
       val fromInt: Int => Bit = value => if value % 2 == 0 then Bit.Zero else Bit.One
@@ -36,9 +44,5 @@ object Binary:
 
       Binary(toBinary(input, Nil))
     }
-
   extension (input: String)
-    def toBinary: Binary = Binary(input.collect {
-      case '0' => Bit.Zero
-      case '1' => Bit.One
-    })
+    def toBinary(using TypeParser[String, Binary]): Binary = input.as[Binary]

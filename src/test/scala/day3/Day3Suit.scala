@@ -2,9 +2,10 @@ package day3
 
 import day3.Day3
 import day3.domain.Binary
-import day3.domain.Binary.toBinary
-import extension.ReadInput.readInput
 import org.scalatest.funsuite.AnyFunSuite;
+import parser.TypeParser._
+import parser.TypeParser.listParser
+import day3.domain.Binary.toBinary
 
 class Day3Suit extends AnyFunSuite :
 
@@ -28,7 +29,7 @@ class Day3Suit extends AnyFunSuite :
   }
 
   test("with test data") {
-    val input = "day3/input1".readInput.map(_.toBinary)
+    val input = "day3/input1".as[Seq[Binary]]
     val result = Day3.powerConsumption(input)
     println(result)
   }
@@ -53,7 +54,7 @@ class Day3Suit extends AnyFunSuite :
   }
 
   test("part 2 with test data") {
-    val input = "day3/input2".readInput.map(_.toBinary)
+    val input = "day3/input2".as[Seq[Binary]]
     val result = Day3.lifeSupportRating(input)
     println(result)
   }

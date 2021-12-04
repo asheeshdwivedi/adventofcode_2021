@@ -1,8 +1,9 @@
 package day2
 
-import day2.domain.Command.{Forward, Down, Up}
+import day2.domain.Command
+import day2.domain.Command.{Down, Forward, Up}
 import org.scalatest.funsuite.AnyFunSuite
-import extension.ReadInput.readInput;
+import parser.TypeParser._
 
 class Day2Suit extends AnyFunSuite :
 
@@ -19,11 +20,7 @@ class Day2Suit extends AnyFunSuite :
   }
 
   test("part 1 with test data") {
-    val input = "day2/input1".readInput.map {
-      case s"forward $steps" => Forward(steps.toInt)
-      case s"down $steps" => Down(steps.toInt)
-      case s"up $steps" => Up(steps.toInt)
-    }
+    val input = "day2/input1".as[Seq[Command]]
     val result = Day2.computePart1(input)
     println(result)
   }
@@ -41,11 +38,7 @@ class Day2Suit extends AnyFunSuite :
   }
 
   test("part 2 with test data ") {
-    val input = "day2/input2".readInput.map {
-      case s"forward $steps" => Forward(steps.toInt)
-      case s"down $steps" => Down(steps.toInt)
-      case s"up $steps" => Up(steps.toInt)
-    }
+    val input = "day2/input2".as[Seq[Command]]
     val result = Day2.computePart2(input)
     println(result)
   }
