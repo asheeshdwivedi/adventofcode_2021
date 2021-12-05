@@ -33,16 +33,12 @@ object Binary:
     def parse(input: String): Binary = Binary(input.map(_.as[Bit]))
 
   extension (input: Int)
-    def toBinary = {
+    def toBinary = 
       val fromInt: Int => Bit = value => if value % 2 == 0 then Bit.Zero else Bit.One
-
       @tailrec
-      def toBinary(n: Int, acc: List[Bit]): List[Bit] = {
+      def toBinary(n: Int, acc: List[Bit]): List[Bit] = 
         if n / 2 == 1 then Bit.One :: fromInt(n) :: acc
         else toBinary(n / 2, fromInt(n % 2) :: acc)
-      }
-
+        
       Binary(toBinary(input, Nil))
-    }
-  extension (input: String)
-    def toBinary(using TypeParser[String, Binary]): Binary = input.as[Binary]
+    

@@ -6,7 +6,7 @@ import day2.domain.PositionCalculator.*
 
 object Day2:
 
-  def computePart1(input: Seq[Command]): Int = {
+  def computePart1(input: Seq[Command]): Int = 
     val accumulatedPosition = input.foldLeft(Position.empty)((position, instruction) =>
       instruction match
         case Forward(steps) => position.increaseHorizontal(steps)
@@ -14,9 +14,9 @@ object Day2:
         case Up(steps) => position.decreaseDepth(steps)
     )
     accumulatedPosition.horizontal * accumulatedPosition.depth
-  }
+  
 
-  def computePart2(input: Seq[Command]): Int = {
+  def computePart2(input: Seq[Command]): Int = 
     val accumulatedPosition = input.foldLeft(Position.empty)((position, instruction) =>
       instruction match
         case Forward(steps) => position.increaseHorizontal(steps)
@@ -25,5 +25,5 @@ object Day2:
         case Up(steps) => position.decreaseAim(steps)
     )
     accumulatedPosition.horizontal * accumulatedPosition.depth
-  }
+  
 

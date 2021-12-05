@@ -10,10 +10,10 @@ object Day4:
     @tailrec
     def untilBingo(remainingDraws: Seq[Int], grids: Seq[Grid[Int]]): Int =
       val draw = remainingDraws.head
-      val updateGrid = grids.map(_.visit(draw))
-      updateGrid.find(_.isAnyRowOrColumnVisitedCompletely) match
-        case Some(value) => value.nonVisitedItem.sum * draw
-        case None => untilBingo(remainingDraws.tail, updateGrid)
+      val updatedGrid = grids.map(_.visit(draw))
+      updatedGrid.find(_.isAnyRowOrColumnVisitedCompletely) match
+        case Some(value) => value.nonVisitedItems.sum * draw
+        case None => untilBingo(remainingDraws.tail, updatedGrid)
 
     untilBingo(input.draws, input.grids)
 
@@ -24,15 +24,15 @@ object Day4:
       if remainingDraws.isEmpty then winner
       else
         val draw = remainingDraws.head
-        val updateGrid = grids.map(_.visit(draw))
-        val completedGrid = grids.zip(updateGrid).find(
+        val updatedGrid = grids.map(_.visit(draw))
+        val completedGrid = grids.zip(updatedGrid).find(
           (previous, current) => !previous.isAnyRowOrColumnVisitedCompletely && current.isAnyRowOrColumnVisitedCompletely
         )
         val newWinner = completedGrid match
-          case Some(_, completed) => completed.nonVisitedItem.sum * draw
+          case Some(_, completed) => completed.nonVisitedItems.sum * draw
           case None => winner
 
-        untilLastWinner(remainingDraws.tail, updateGrid, newWinner)
+        untilLastWinner(remainingDraws.tail, updatedGrid, newWinner)
 
     untilLastWinner(input.draws, input.grids, 0)
 
