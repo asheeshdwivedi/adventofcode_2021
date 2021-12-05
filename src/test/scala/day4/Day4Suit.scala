@@ -20,4 +20,16 @@ class Day4Suit extends AnyFunSuite :
     println(result)
   }
 
+  test("part 2 test with sample data") {
+    val input = "day4/sampleData".as[BingoInput]
+    val result = Day4.lastWinner(input)
+    assert(1924 == result)
+  }
+
+  test("part 2 test with input data") {
+    val input = "day4/input2".as[BingoInput]
+    val result = Day4.lastWinner(input)
+    println(result)
+  }
+
 
