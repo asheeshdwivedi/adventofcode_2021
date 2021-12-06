@@ -14,7 +14,5 @@ object PositionCalculator:
 
     def increaseAim(by: Int): Position = position.copy(aim = position.aim + by)
 
-    def increaseDepthByAimTimes(by: Int): Position = position.copy(depth = (by * position.aim) + position.depth)
-
-
-
+    def increaseDepthByAimTimes(by: Int): Position =
+      position.copy(depth = (by * position.aim) + position.depth)

@@ -13,11 +13,12 @@ object Day5:
   def solve(lines: Seq[Line]): Int =
     lines
       .foldLeft(Map.empty[Point, Int]) { (acc, line) =>
-        line.allCoordinates.foldLeft(acc) {
-          (m, p) =>
-            m.updatedWith(p) {
-              case Some(n) => Some(n + 1)
-              case None => Some(1)
-            }
+        line.allCoordinates.foldLeft(acc) { (m, p) =>
+          m.updatedWith(p) {
+            case Some(n) => Some(n + 1)
+            case None => Some(1)
+          }
         }
-      }.values.count(_ >= 2)
+      }
+      .values
+      .count(_ >= 2)
