@@ -20,14 +20,14 @@ class Day6Suit extends AnyFunSuite :
   test("test part 2 with sample data") {
     val input = "day6/sampleData".as[Seq[String]].flatMap(_.split(",").map(_.toInt))
     val result = Day6.solve(input, 256)
-    assert(result == BigInt("26984457539"))
+    assert(result == 26984457539l)
     println(result)
   }
 
   test("part 2 with test data") {
     val input = "day6/input2".as[Seq[String]].flatMap(_.split(",").map(_.toInt))
     val result = Day6.solve(input, 256)
-    assert(BigInt("1592778185024") == result)
+    assert(1592778185024l == result)
     println(result)
   }
 
